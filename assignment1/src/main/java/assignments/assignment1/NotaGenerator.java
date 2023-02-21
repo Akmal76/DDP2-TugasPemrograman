@@ -96,6 +96,8 @@ public class NotaGenerator {
                     System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
                 }
 
+                // Mengeluarkan nota
+                System.out.println("Nota Laundry");
                 System.out.println(generateNota(generateId(nama, nomorHP), paket.toLowerCase(), beratTemp, tanggal));
             }
 
@@ -197,7 +199,7 @@ public class NotaGenerator {
 
         String tanggalSelesai = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        return "Nota Laundry\nID    : " + id + "\nPaket : " + paket + "\nHarga :\n" + berat + " kg x " + hargaSatuan + " = " +
+        return "ID    : " + id + "\nPaket : " + paket + "\nHarga :\n" + berat + " kg x " + hargaSatuan + " = " +
                harga + "\nTanggal Terima  : " + tanggalTerima + "\nTanggal Selesai : " + tanggalSelesai;
     }
 }
