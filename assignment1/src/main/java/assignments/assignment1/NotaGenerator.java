@@ -20,7 +20,6 @@ public class NotaGenerator {
 
         // Inisialisasi variabel yang diperlukan
         String pilihan   = "?";
-        String tempBaris = "";
         String nama      = "";
         String nomorHP   = "";
         String id        = "";
