@@ -1,5 +1,5 @@
 /*
- * DDP 2 - Lab 01 Methods
+ * DDP 2 - TP 01 Methods
  * 2022/2023 Genap
  * CuciCuci by DekDepe
  */
@@ -42,7 +42,8 @@ public class NotaGenerator {
                 pilihan   = input.nextLine();
                 System.out.println("================================");
             }
-            
+            if (pilihan.equals("0")) break;
+
             // Meminta nama dan nomor handphone dari user
             System.out.println("Masukkan nama Anda:");
             nama    = input.nextLine();
