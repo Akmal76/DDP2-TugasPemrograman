@@ -19,7 +19,7 @@ public class NotaGenerator {
         // TODO: Implement interface menu utama
 
         // Inisialisasi variabel yang diperlukan
-        String pilihan   = "?";
+        String pilihan   = "";
         String nama      = "";
         String nomorHP   = "";
         String id        = "";
@@ -110,6 +110,7 @@ public class NotaGenerator {
 
         // Mengucapkan terima kasih kepada user
         System.out.println("Terima kasih telah menggunakan NotaGenerator!");
+        input.close();
     }
 
     // Method untuk menampilkan menu di NotaGenerator.
