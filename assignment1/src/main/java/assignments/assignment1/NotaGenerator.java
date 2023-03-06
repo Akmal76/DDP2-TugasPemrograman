@@ -1,8 +1,8 @@
 /*
- * DDP 2 - TP 01 Methods
- * 2022/2023 Genap
- * CuciCuci by DekDepe
- */
+* DDP 2 - TP 01 Methods
+* 2022/2023 Genap
+* CuciCuci by DekDepe
+*/
 
 package assignments.assignment1;
 
@@ -72,14 +72,14 @@ public class NotaGenerator {
                 // Validasi paket laundry
                 if (paket.equals("?")) showPaket();
                 while (!paket.toLowerCase().equals("express") &&
-                       !paket.toLowerCase().equals("fast") &&
-                       !paket.toLowerCase().equals("reguler")
-                      ) {
+                    !paket.toLowerCase().equals("fast") &&
+                    !paket.toLowerCase().equals("reguler")
+                    ) {
                         System.out.println("Paket hemat tidak diketahui\n[ketik ? untuk mencari tahu jenis paket]");
                         System.out.println("Masukkan paket laundry:");
                         paket = input.nextLine();
                         if (paket.equals("?")) showPaket();
-                      }
+                    }
 
                 System.out.println("Masukkan berat cucian Anda [Kg]:");
                 berat = input.nextLine();
@@ -98,7 +98,7 @@ public class NotaGenerator {
 
                 // Mengeluarkan nota
                 System.out.println("Nota Laundry");
-                System.out.println(generateNota(generateId(nama, nomorHP), paket.toLowerCase(), beratTemp, tanggal));
+                System.out.println(generateNota(generateId(nama, nomorHP), paket, beratTemp, tanggal));
             }
 
             // Meminta pilihan menu dari user
@@ -133,10 +133,10 @@ public class NotaGenerator {
 
     /**
      * Method untuk membuat ID dari nama dan nomor handphone.
-     * Parameter dan return type dari method ini tidak boleh diganti agar tidak mengganggu testing
-     *
-     * @return String ID anggota dengan format [NAMADEPAN]-[nomorHP]-[2digitChecksum]
-     */
+    * Parameter dan return type dari method ini tidak boleh diganti agar tidak mengganggu testing
+    *
+    * @return String ID anggota dengan format [NAMADEPAN]-[nomorHP]-[2digitChecksum]
+    */
     public static String generateId(String nama, String nomorHP){
         // TODO: Implement generate ID sesuai soal.
         String id = "";
@@ -154,7 +154,7 @@ public class NotaGenerator {
             else if ('0' <= id.charAt(i) && id.charAt(i) <= '9') checkSum += id.charAt(i) - 48;
             else                                                 checkSum += 7;
         }
-        
+        checkSum %= 100;
         if      (checkSum > 99) { id += "-" + Integer.toString(checkSum % 100); }
         else if (checkSum < 10) { id += "-0" + Integer.toString(checkSum); }
         else                    { id += "-" + Integer.toString(checkSum);       }
@@ -164,17 +164,17 @@ public class NotaGenerator {
 
     /**
      *
-     * Method untuk membuat Nota.
-     * Parameter dan return type dari method ini tidak boleh diganti agar tidak mengganggu testing.
-     *
-     * @return string nota dengan format di bawah:
-     *         <p>ID    : [id]
-     *         <p>Paket : [paket]
-     *         <p>Harga :
-     *         <p>[berat] kg x [hargaPaketPerKg] = [totalHarga]
-     *         <p>Tanggal Terima  : [tanggalTerima]
-     *         <p>Tanggal Selesai : [tanggalTerima + LamaHariPaket]
-     */
+    * Method untuk membuat Nota.
+    * Parameter dan return type dari method ini tidak boleh diganti agar tidak mengganggu testing.
+    *
+    * @return string nota dengan format di bawah:
+    *         <p>ID    : [id]
+    *         <p>Paket : [paket]
+    *         <p>Harga :
+    *         <p>[berat] kg x [hargaPaketPerKg] = [totalHarga]
+    *         <p>Tanggal Terima  : [tanggalTerima]
+    *         <p>Tanggal Selesai : [tanggalTerima + LamaHariPaket]
+    */
 
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
         // TODO: Implement generate nota sesuai soal.
@@ -184,15 +184,15 @@ public class NotaGenerator {
         LocalDate date = LocalDate.parse(tanggalTerima, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         // Menentukan harga dan lama laundry
-        if (paket.equals("express")) {
+        if (paket.toLowerCase().equals("express")) {
             hargaSatuan = "12000";
             harga      += berat * 12000;
             date        = date.plusDays(1);
-        } else if (paket.equals("fast")) {
+        } else if (paket.toLowerCase().equals("fast")) {
             hargaSatuan = "10000";
             harga      += berat * 10000;
             date        = date.plusDays(2);
-        } else if (paket.equals("reguler")) {
+        } else if (paket.toLowerCase().equals("reguler")) {
             hargaSatuan = "7000";
             harga      += berat * 7000;
             date        = date.plusDays(3);
@@ -201,6 +201,6 @@ public class NotaGenerator {
         String tanggalSelesai = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         return "ID    : " + id + "\nPaket : " + paket + "\nHarga :\n" + berat + " kg x " + hargaSatuan + " = " +
-               harga + "\nTanggal Terima  : " + tanggalTerima + "\nTanggal Selesai : " + tanggalSelesai;
+            harga + "\nTanggal Terima  : " + tanggalTerima + "\nTanggal Selesai : " + tanggalSelesai;
     }
 }
