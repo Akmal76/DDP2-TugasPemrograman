@@ -75,7 +75,7 @@ public class NotaGenerator {
                     !paket.toLowerCase().equals("fast") &&
                     !paket.toLowerCase().equals("reguler")
                     ) {
-                        System.out.println("Paket hemat tidak diketahui\n[ketik ? untuk mencari tahu jenis paket]");
+                        System.out.printf("Paket %s tidak diketahui\n[ketik ? untuk mencari tahu jenis paket]\n", paket);
                         System.out.println("Masukkan paket laundry:");
                         paket = input.nextLine();
                         if (paket.equals("?")) showPaket();
@@ -85,7 +85,7 @@ public class NotaGenerator {
                 berat = input.nextLine();
 
                 // Validasi berat cucian
-                while (!berat.matches("[0-9]+")) {
+                while (!berat.matches("[0-9]+") && berat.equals("0")) {
                     System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
                     berat = input.nextLine();
                 }

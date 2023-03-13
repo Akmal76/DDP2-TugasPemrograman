@@ -6,7 +6,6 @@
 
 package assignments.assignment2;
 
-import assignments.assignment1.NotaGenerator;
 import java.util.ArrayList;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +17,7 @@ public class Nota {
     private Member  member;
     private int     berat;
     private String  tanggalMasuk;
+    private int     sisaHariPengerjaan;
     private boolean isReady;
 
     public Nota(Member member, String paket, int berat, String tanggalMasuk) {
@@ -45,7 +45,7 @@ public class Nota {
 
         String tempTanggal = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        if (tempTanggal.equals(tanggalSekarang) && !this.isReady) this.isReady = true;
+        if (tempTanggal.equals(tanggalSekarang)) this.isReady = true;
         else this.isReady = false;
     }
 
@@ -61,7 +61,8 @@ public class Nota {
         return null;
     }
 
-    public static String generateNota(String id, String paket, int berat, String tanggalTerima, Member member){
+    // Method untuk generateNota
+    public String generateNota(String id, String paket, int berat, String tanggalTerima, Member member){
         String hargaSatuan    = "";
         int harga             = 0;
 
@@ -72,14 +73,17 @@ public class Nota {
             hargaSatuan = "12000";
             harga      += berat * 12000;
             date        = date.plusDays(1);
+            this.sisaHariPengerjaan = 1;
         } else if (paket.toLowerCase().equals("fast")) {
             hargaSatuan = "10000";
             harga      += berat * 10000;
             date        = date.plusDays(2);
+            this.sisaHariPengerjaan = 2;
         } else if (paket.toLowerCase().equals("reguler")) {
             hargaSatuan = "7000";
             harga      += berat * 7000;
             date        = date.plusDays(3);
+            this.sisaHariPengerjaan = 3;
         }
 
         String tanggalSelesai = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -94,8 +98,8 @@ public class Nota {
         return "ID    : " + id + "\nPaket : " + paket + "\nHarga :\n" + hargaFinal + "\nTanggal Terima  : " + tanggalTerima + "\nTanggal Selesai : " + tanggalSelesai;
     }
 
-    public String toString() {
-        return "ID Nota: " + this.idNota + "\nPaket: " + this.paket + "\nMember: " + this.member +
-               "\nBerat: " + this.berat + "\nTanggal Masuk: " + this.tanggalMasuk + "\nIs Ready: " + this.isReady;
-    }
+    // public String toString() {
+    //     return "ID Nota: " + this.idNota + "\nPaket: " + this.paket + "\nMember: " + this.member +
+    //            "\nBerat: " + this.berat + "\nTanggal Masuk: " + this.tanggalMasuk + "\nIs Ready: " + this.isReady;
+    // }
 }

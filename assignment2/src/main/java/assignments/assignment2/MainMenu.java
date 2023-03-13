@@ -9,8 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 
 import static assignments.assignment1.NotaGenerator.*;
 
@@ -21,8 +19,6 @@ public class MainMenu {
     private static ArrayList<Nota>   notaList    = new ArrayList<Nota>();
     private static ArrayList<Member> memberList  = new ArrayList<Member>();
     private static int               countIDNota = 0;
-    // private static Nota[]   notaList;
-    // private static Member[] memberList;
 
     public static void main(String[] args) {
         boolean isRunning = true;
@@ -61,7 +57,7 @@ public class MainMenu {
             noHp = input.nextLine();
         }
 
-        // Generate ID
+        // Generate ID (menggunakan method dari TP01)
         String id = generateId(nama, noHp);
 
         // Cek ID dan menambahkan nota
@@ -93,23 +89,22 @@ public class MainMenu {
         System.out.println("Masukan paket laundry:");
         String paket = input.nextLine();
 
-        // Validasi paket laundry
-        if (paket.equals("?")) showPaket();
+        // Validasi paket laundry1
         while (!paket.toLowerCase().equals("express") &&
                !paket.toLowerCase().equals("fast") &&
                !paket.toLowerCase().equals("reguler")
               ) {
-                    System.out.println("Paket hemat tidak diketahui\n[ketik ? untuk mencari tahu jenis paket]");
+                    if (paket.equals("?")) showPaket();
+                    else System.out.printf("Paket %s tidak diketahui\n[ketik ? untuk mencari tahu jenis paket]\n", paket);
                     System.out.println("Masukkan paket laundry:");
                     paket = input.nextLine();
-                    if (paket.equals("?")) showPaket();
                 }
         
         System.out.println("Masukkan berat cucian Anda [Kg]:");
         String berat = input.nextLine();
 
         // Validasi berat cucian
-        while (!berat.matches("[0-9]+")) {
+        while (!berat.matches("[0-9]+") && berat.equals("0")) {
             System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
             berat = input.nextLine();
         }
@@ -122,15 +117,15 @@ public class MainMenu {
         }
 
         // Menambahkan nota
-        String tanggal = fmt.format(cal.getTime());
-        Nota notaBaru = new Nota(memberTemp, paket, beratTemp, tanggal);
+        String tanggal  = fmt.format(cal.getTime());
+        Nota   notaBaru = new Nota(memberTemp, paket, beratTemp, tanggal);
         notaBaru.setIDNota(countIDNota);
-        countIDNota++;
         notaList.add(notaBaru);
+        countIDNota++;
 
         System.out.println("Berhasil menambahkan nota!");
         System.out.printf("[ID Nota = %d]\n", notaBaru.getIDNota());
-        System.out.println(Nota.generateNota(id, paket, beratTemp, tanggal, memberTemp));
+        System.out.println(notaBaru.generateNota(id, paket, beratTemp, tanggal, memberTemp));
         System.out.println("Status      	: Belum bisa diambil :(");
         // System.out.println("Member Count: " + memberTemp.getBonusCounter());
     }
@@ -183,9 +178,9 @@ public class MainMenu {
                         break;
                     }
                 }
-                System.out.printf("Nota dengan ID %d berhasil diambil!\n", tempNota.getIDNota());
+                   System.out.printf("Nota dengan ID %d berhasil diambil!\n", tempNota.getIDNota());
             } else System.out.printf("Nota dengan ID %d gagal diambil!\n", tempNota.getIDNota());
-        } else System.out.printf("Nota dengan ID %s tidak ditemukan!\n", idNota);
+        }     else System.out.printf("Nota dengan ID %s tidak ditemukan!\n", idNota);
     }
 
     private static void handleNextDay() {
@@ -219,19 +214,19 @@ public class MainMenu {
     }
 
     // Debug Method
-    private static void printDaftarMember(ArrayList<Member> arrList) {
-        System.out.println("----------------DEBUG----------------");
-        for (Member i : arrList) {
-            System.out.println(i);
-            System.out.println("----------------------------------");
-        }
-    }
+    // private static void printDaftarMember(ArrayList<Member> arrList) {
+    //     System.out.println("----------------DEBUG----------------");
+    //     for (Member i : arrList) {
+    //         System.out.println(i);
+    //         System.out.println("----------------------------------");
+    //     }
+    // }
 
-    private static void printDaftarNota(ArrayList<Nota> arrList) {
-        System.out.println("----------------DEBUG----------------");
-        for (Nota i : arrList) {
-            System.out.println(i);
-            System.out.println("----------------------------------");
-        }
-    }
+    // private static void printDaftarNota(ArrayList<Nota> arrList) {
+    //     System.out.println("----------------DEBUG----------------");
+    //     for (Nota i : arrList) {
+    //         System.out.println(i);
+    //         System.out.println("----------------------------------");
+    //     }
+    // }
 }

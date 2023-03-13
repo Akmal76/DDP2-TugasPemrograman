@@ -8,8 +8,6 @@ package assignments.assignment2;
 
 import java.util.ArrayList;
 
-import assignments.assignment1.NotaGenerator;
-
 public class Member {
     // TODO: tambahkan attributes yang diperlukan untuk class ini
     private String nama;
@@ -26,6 +24,7 @@ public class Member {
     // TODO: tambahkan methods yang diperlukan untuk class ini
     // Setter Method
     public void setID           (String id) {this.id = id;}
+
     public void addBonusCounter () {
         this.bonusCounter++;
         this.bonusCounter %= 3;
@@ -43,7 +42,7 @@ public class Member {
         return null;
     }
 
-    public String toString() {
-        return String.format("Nama: %s\nNomor HP: %s\nID: %s\nBonus Counter: %d", this.nama, this.noHp, this.id, this.bonusCounter);
-    }
+    // public String toString() {
+    //     return String.format("Nama: %s\nNomor HP: %s\nID: %s\nBonus Counter: %d", this.nama, this.noHp, this.id, this.bonusCounter);
+    // }
 }
