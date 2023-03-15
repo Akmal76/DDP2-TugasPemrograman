@@ -60,12 +60,13 @@ public class MainMenu {
         String id = generateId(nama, noHp);
 
         // Cek ketersediaan ID
-        if (Member.isExist(id, memberList) == null) {
+        Member tempMember = Member.isExist(id, memberList);
+        if (tempMember == null) {
             Member memberBaru = new Member(nama, noHp);
             memberBaru.setID(id);
             addMemberList(memberBaru);
             System.out.printf("Berhasil membuat member dengan ID %s!\n", id);  
-        } else System.out.printf("Member dengan nama %s dan nomor hp %s sudah ada!\n", nama, noHp);
+        } else System.out.printf("Member dengan nama %s dan nomor hp %s sudah ada!\n", tempMember.getNama(), noHp);
     }
 
     private static void handleGenerateNota() {
@@ -100,7 +101,7 @@ public class MainMenu {
         String berat = input.nextLine();
 
         // Validasi berat cucian
-        while (!berat.matches("[0-9]+") && berat.equals("0")) {
+        while (!berat.matches("[0-9]+") || berat.equals("0")) {
             System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
             berat = input.nextLine();
         }
