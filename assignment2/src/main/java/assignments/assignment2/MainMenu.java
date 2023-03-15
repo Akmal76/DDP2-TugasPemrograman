@@ -60,13 +60,12 @@ public class MainMenu {
         String id = generateId(nama, noHp);
 
         // Cek ketersediaan ID
-        Member tempMember = Member.isExist(id, memberList);
-        if (tempMember == null) {
+        if (Member.isExist(id, memberList) == null) {
             Member memberBaru = new Member(nama, noHp);
             memberBaru.setID(id);
             addMemberList(memberBaru);
             System.out.printf("Berhasil membuat member dengan ID %s!\n", id);  
-        } else System.out.printf("Member dengan nama %s dan nomor hp %s sudah ada!\n", tempMember.getNama(), noHp);
+        } else System.out.printf("Member dengan nama %s dan nomor hp %s sudah ada!\n", nama, noHp);
     }
 
     private static void handleGenerateNota() {
