@@ -217,7 +217,7 @@ public class MainMenu {
         notaList = Arrays.copyOf(tempNotaList, tempNotaList.length);
     }
 
-    // Method untuk menghapud member dalam notaList
+    // Method untuk menghapus member dalam notaList
     private static void deleteNotaList(Nota nota, int index) {
         Nota[] tempNotaList = new Nota[notaList.length - 1];
 
