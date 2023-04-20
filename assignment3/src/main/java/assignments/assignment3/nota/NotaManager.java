@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.nota;
 
 import java.text.SimpleDateFormat;

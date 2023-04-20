@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.nota.Nota;
@@ -5,6 +11,8 @@ import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.Member;
 
 import static assignments.assignment3.nota.NotaManager.notaList;
+
+import javax.sound.midi.Soundbank;
 
 public class EmployeeSystem extends SystemCLI {
 
@@ -29,18 +37,23 @@ public class EmployeeSystem extends SystemCLI {
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = true;
+
+        // Melakukan menu "It's nyuci time"
         if (choice == 1) {
             System.out.println("Stand back! " + loginMember.getNama() + " beginning to nyuci!");
             for (Nota nota : notaList) System.out.println(nota.kerjakan());
-            System.out.println("\n");
-            logout = false;
-        }
-        else if (choice == 2) {
-            for (Nota nota : notaList) System.out.println(nota.getNotaStatus());
-            System.out.println("\n");
+            System.out.println();
             logout = false;
         }
 
+        // Melakukan menu "Display List Nota"
+        else if (choice == 2) {
+            for (Nota nota : notaList) System.out.println(nota.getNotaStatus());
+            System.out.println();
+            logout = false;
+        }
+
+        // Melakukan menu "Logout"
         return logout;
     }
 

@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.nota;
 import java.util.Arrays;
 import java.time.*;
@@ -25,17 +31,21 @@ public class Nota {
         this.paket        = paket;
         this.tanggalMasuk = tanggal;
 
+        // Menetapkan sisa hari pengerjaan
         if      (this.paket.equalsIgnoreCase("express")) this.sisaHariPengerjaan = 1;
         else if (this.paket.equalsIgnoreCase("fast"))    this.sisaHariPengerjaan = 2;
         else if (this.paket.equalsIgnoreCase("reguler")) this.sisaHariPengerjaan = 3;
 
+        // Menetapkan id nota
         this.idNota = totalNota;
         totalNota++;
 
+        // Menyiapkan array services
         this.services = new LaundryService[1];
         this.services[0] = new CuciService();
     }
 
+    // Method untuk menambahkan service ke array services
     public void addService(LaundryService service){
         LaundryService[] tempServices = new LaundryService[this.services.length + 1];
 
@@ -45,6 +55,7 @@ public class Nota {
         this.services = Arrays.copyOf(tempServices, tempServices.length);
     }
 
+    // Method untuk mengerjakan satu layanan yang dilakukan oleh Employee
     public String kerjakan(){
         int counter = 1;
         for (LaundryService service : services) {
@@ -59,10 +70,13 @@ public class Nota {
         }
         return "Nota " + this.idNota + " : Sudah selesai.";
     }
+
+    // Method untuk mengurangi sisa hari pengerjaan
     public void toNextDay() {
         this.sisaHariPengerjaan--;
     }
 
+    // Method untuk menghitung harga nota cucian
     public long calculateHarga(){
         if      (this.paket.equalsIgnoreCase("express")) this.baseHarga = 12000 * this.berat;
         else if (this.paket.equalsIgnoreCase("fast"))    this.baseHarga = 10000 * this.berat;
@@ -76,6 +90,7 @@ public class Nota {
         return this.baseHarga;
     }
 
+    // Method untuk memperoleh status nota
     public String getNotaStatus(){
         if (this.isDone) return "Nota " + this.idNota + " : Sudah selesai.";
         return "Nota " + this.idNota + " : Belum selesai.";

@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3;
 
 import assignments.assignment1.NotaGenerator;
@@ -40,9 +46,9 @@ public class LoginManager {
      * @return Member object yang berhasil mendaftar, return null jika gagal mendaftar.
      */
     public Member register(String nama, String noHp, String password) {
-        // kerjakan
         String id = NotaGenerator.generateId(nama, noHp);
 
+        // Jika tidak ada member yang memiliki ID tersebut, maka member dapat dibuat
         if (getSystem(id) == null) {
             Member member = new Member(nama, id, password);
             this.memberSystem.addMember(member);

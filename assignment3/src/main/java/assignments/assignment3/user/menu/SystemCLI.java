@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.user.Member;
@@ -22,7 +28,7 @@ public abstract class SystemCLI {
 
         if (authMember != null) {
             this.in = in;
-            System.out.println("Login successful!");
+            System.out.println("Login successful!\n");
             run(in, authMember);
             return;
         }

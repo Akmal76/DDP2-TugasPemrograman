@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.MainMenu;
@@ -19,6 +25,8 @@ public class MemberSystem extends SystemCLI {
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = true;
+
+        // Melakukan menu "Saya ingin laundry"
         if (choice == 1) {
             // Meminta masukan paket laundry dari user
             System.out.println("Masukan paket laundry:");
@@ -65,12 +73,14 @@ public class MemberSystem extends SystemCLI {
             logout = false;
         }
 
+        // Melakukan menu "Lihat detail nota saya"
         else if (choice == 2) {
             Nota[] notaMember = super.loginMember.getNotaList();
             for (Nota nota : notaMember) System.out.println(nota);
             logout = false;
         }
         
+        // Melakukan menu "Logout"
         return logout;
     }
 

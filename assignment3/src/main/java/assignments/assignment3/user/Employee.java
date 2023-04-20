@@ -1,3 +1,9 @@
+/*
+* DDP  - TP 03 Inheritance, Abstract Classes, and Interfaces
+* 2022/2023 Genap
+* CuciCuci III: CuciCuci Cuci
+*/
+
 package assignments.assignment3.user;
 
 public class Employee extends Member {
@@ -14,9 +20,9 @@ public class Employee extends Member {
      * @param nama -> Nama lengkap dari employee
      */
     private static String generateId(String nama) {
-        // kerjakan
         String id = "";
         int indeksAkhir = nama.indexOf(" ");
+        
         if (indeksAkhir != -1) nama = nama.substring(0, indeksAkhir).toUpperCase();
         else                   nama = nama.toUpperCase();
         id = nama + "-" + employeeCount;
