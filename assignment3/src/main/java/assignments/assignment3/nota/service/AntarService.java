@@ -3,22 +3,23 @@ package assignments.assignment3.nota.service;
 import assignments.assignment3.nota.Nota;
 
 public class AntarService implements LaundryService{
+    private boolean isWorkDone = false;
+
     @Override
     public String doWork() {
-        // TODO
-        return "";
+        isWorkDone = true;
+        return "Sedang mengantar...";
     }
 
     @Override
     public boolean isDone() {
-        // TODO
-        return false;
+        return isWorkDone;
     }
 
     @Override
     public long getHarga(int berat) {
-        // TODO
-        return 0;
+        if (berat < 4) return 2000;
+        return berat * 500;
     }
 
     @Override

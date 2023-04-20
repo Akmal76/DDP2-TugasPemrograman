@@ -16,7 +16,6 @@ public class NotaGenerator {
 
     // Method main, program utama kalian berjalan disini.
     public static void main(String[] args) {
-        // TODO: Implement interface menu utama
 
         // Inisialisasi variabel yang diperlukan
         String pilihan   = "";
@@ -138,7 +137,6 @@ public class NotaGenerator {
     * @return String ID anggota dengan format [NAMADEPAN]-[nomorHP]-[2digitChecksum]
     */
     public static String generateId(String nama, String nomorHP){
-        // TODO: Implement generate ID sesuai soal.
         String id = "";
 
         // Bila ada spasi pada nama, cukup ambil kata pertamanya saja
@@ -177,7 +175,6 @@ public class NotaGenerator {
     */
 
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
-        // TODO: Implement generate nota sesuai soal.
         String hargaSatuan    = "";
         int harga             = 0;
 

@@ -20,7 +20,7 @@ public class MainMenu {
      *
      * @param args command line arguments, bisa kalian ignore.
      */
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu(new Scanner(System.in), new LoginManager(new EmployeeSystem(), new MemberSystem()));
         mainMenu.run();
     }
@@ -55,7 +55,7 @@ public class MainMenu {
      * Skips ke hari selanjutnya dan mengupdate sistem.
      */
     private void toNextDay() {
-        System.out.println("Kamu tidur hari ini... zzz...");
+        System.out.println("Kamu tidur hari ini... zzz...\n");
         NotaManager.toNextDay();
     }
 
@@ -72,10 +72,10 @@ public class MainMenu {
 
         Member registeredMember = loginManager.register(nama, noHp, password);
         if(registeredMember == null){
-            System.out.printf("User dengan nama %s dan nomor hp %s sudah ada!\n", nama, noHp);
+            System.out.printf("User dengan nama %s dan nomor hp %s sudah ada!\n\n", nama, noHp);
             return;
         }
-        System.out.printf("Berhasil membuat user dengan ID %s!\n", registeredMember.getId());
+        System.out.printf("Berhasil membuat user dengan ID %s!\n\n", registeredMember.getId());
     }
 
     /**
@@ -88,7 +88,7 @@ public class MainMenu {
         String inputPassword = in.nextLine();
         SystemCLI systemCLI = loginManager.getSystem(inputId);
         if(systemCLI == null){
-            System.out.println("ID atau password invalid.");
+            System.out.println("ID atau password invalid.\n");
             return;
         }
         systemCLI.login(in, inputId, inputPassword);
