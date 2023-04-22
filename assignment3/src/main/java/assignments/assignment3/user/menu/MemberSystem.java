@@ -53,12 +53,12 @@ public class MemberSystem extends SystemCLI {
             // Menawarkan jasa setrika
             System.out.print("Apakah kamu ingin cucianmu disetrika oleh staff professional kami?\nHanya tambah 1000 / kg :0\n[Ketik x untuk tidak mau]: ");
             tawaran = in.nextLine();
-            if (tawaran.equals("x")) setrika = false;
+            if (tawaran.equalsIgnoreCase("x")) setrika = false;
 
             // Menawarkan jasa kurir
             System.out.print("Mau diantar oleh kurir kami? Dijamin aman dan cepat sampai tujuan!\nCuma 2000 / 4kg, kemudian 500 / kg\n[Ketik x untuk tidak mau]: ");
             tawaran = in.nextLine();
-            if (tawaran.equals("x")) kurir = false;
+            if (tawaran.equalsIgnoreCase("x")) kurir = false;
 
             String tanggal = NotaManager.fmt.format(NotaManager.cal.getTime());
             Nota nota = new Nota(super.loginMember, berat, paket, tanggal);
