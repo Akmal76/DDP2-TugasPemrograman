@@ -101,6 +101,7 @@ public class Nota {
         LocalDate date = LocalDate.parse(this.tanggalMasuk, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String hargaPaket = "";
 
+        // Menentukan harga berdasarkan paket
         if (this.paket.equalsIgnoreCase("express")) {
             hargaPaket = "12000";
             date       = date.plusDays(1);
@@ -116,6 +117,7 @@ public class Nota {
 
         String tanggalSelesai = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
+        // Membuat string nota
         String detailNota = "";
         detailNota += "[ID Nota = " + this.idNota + "]\n";
         detailNota += "ID    : " + this.member.getId() + "\n";
@@ -136,6 +138,8 @@ public class Nota {
 
         this.baseHarga = calculateHarga();
         detailNota += "Harga Akhir: " + this.baseHarga;
+
+        // Cek kompensasi keterlambatan
         if (this.sisaHariPengerjaan < 0 && !this.tepatWaktu) detailNota += " Ada kompensasi keterlambatan " + -1 * this.sisaHariPengerjaan + " * 2000 hari";
         detailNota += "\n";
 
