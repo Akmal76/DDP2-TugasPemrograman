@@ -36,10 +36,32 @@ public class MemberSystem extends SystemCLI {
             System.out.println("| Reguler | 3 Hari |  7000 / Kg |");
             System.out.println("+-------------------------------+");
             String paket = in.nextLine();
+ 
+            // Validasi paket laundry
+            while (!paket.toLowerCase().equals("express") &&
+               !paket.toLowerCase().equals("fast") &&
+               !paket.toLowerCase().equals("reguler")
+              ) {
+                    System.out.printf("Paket %s tidak diketahui\n", paket);
+                    System.out.println("Masukkan paket laundry:");
+                    System.out.println("+-------------Paket-------------+");
+                    System.out.println("| Express | 1 Hari | 12000 / Kg |");
+                    System.out.println("| Fast    | 2 Hari | 10000 / Kg |");
+                    System.out.println("| Reguler | 3 Hari |  7000 / Kg |");
+                    System.out.println("+-------------------------------+");
+                    paket = in.nextLine();
+                }
 
             // Meminta masukan berat cucian dari user
             System.out.println("Masukan berat cucian anda [Kg]:");
             String tempBerat = in.nextLine();
+
+            // Validasi berat laundry
+            while (!tempBerat.matches("[0-9]+") || tempBerat.equals("0")) {
+                System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                tempBerat = in.nextLine();
+            }
+
             int berat = Integer.parseInt(tempBerat);
             if (berat < 2) {
                 System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");

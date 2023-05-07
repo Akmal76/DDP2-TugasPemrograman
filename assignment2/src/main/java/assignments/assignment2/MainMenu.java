@@ -84,7 +84,7 @@ public class MainMenu {
         System.out.println("Masukan paket laundry:");
         String paket = input.nextLine();
 
-        // Validasi paket laundry1
+        // Validasi paket laundry
         while (!paket.toLowerCase().equals("express") &&
                !paket.toLowerCase().equals("fast") &&
                !paket.toLowerCase().equals("reguler")
