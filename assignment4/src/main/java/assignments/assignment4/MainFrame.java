@@ -1,8 +1,16 @@
+/*
+ * Akmal Ramadhan - 2206081534
+ * DDP 2 - TP 04 GUI, Event-driven programming
+ * 2022/2023 Genap
+ * CuciCuci IV: Goodbye, Dek Depe!
+ */
+
 package assignments.assignment4;
 import assignments.assignment3.LoginManager;
 import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.MemberSystem;
+import assignments.assignment3.user.menu.SystemCLI;
 import assignments.assignment4.gui.HomeGUI;
 import assignments.assignment4.gui.LoginGUI;
 import assignments.assignment4.gui.RegisterGUI;
@@ -32,14 +40,15 @@ public class MainFrame extends JFrame{
 
     private MainFrame(){
         super("CuciCuciSystem");
-//        TODO: uncomment code dibawah ini setelah kamu implmentasikan addEmployee pada EmployeeSystem.
-//        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
-//        employeeSystem.addEmployee(new Employee[]{
-//                new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
-//                new Employee("Regret", "FansBeratKanaArima")
-//        });
+//        TODOne: uncomment code dibawah ini setelah kamu implmentasikan addEmployee pada EmployeeSystem.
+        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
+        employeeSystem.addEmployee(new Employee[]{
+                new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
+                new Employee("Regret", "FansBeratKanaArima")
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 432);
+        setLocationRelativeTo(null);
         setVisible(true);
         loginablePanel = new Loginable[]{
                 employeeSystemGUI,
@@ -47,6 +56,8 @@ public class MainFrame extends JFrame{
         };
         initGUI();
         cards.show(mainPanel, HomeGUI.KEY);
+//        cards.show(mainPanel, CreateNotaGUI.KEY);
+
         add(mainPanel);
     }
 
@@ -83,7 +94,13 @@ public class MainFrame extends JFrame{
      * @param page -> key dari halaman yang diinginkan.
      * */
     public void navigateTo(String page){
-        // TODO
+        // TODOne
+        if      (page.equals(HomeGUI.KEY))              cards.show(mainPanel, HomeGUI.KEY);
+        else if (page.equals(RegisterGUI.KEY))          cards.show(mainPanel, RegisterGUI.KEY);
+        else if (page.equals(LoginGUI.KEY))             cards.show(mainPanel, LoginGUI.KEY);
+        else if (page.equals(EmployeeSystemGUI.KEY))    cards.show(mainPanel, EmployeeSystemGUI.KEY);
+        else if (page.equals(MemberSystemGUI.KEY))      cards.show(mainPanel, MemberSystemGUI.KEY);
+        else if (page.equals(CreateNotaGUI.KEY))        cards.show(mainPanel, CreateNotaGUI.KEY);
     }
 
     /**
@@ -97,20 +114,21 @@ public class MainFrame extends JFrame{
      * @return boolean yang menandakan apakah login berhasil atau gagal.
      * */
     public boolean login(String id, String password){
-        for (Loginable panel:
-                loginablePanel) {
-            // TODO
+        for (Loginable panel: loginablePanel) {
+            // TODOne
+            if (panel.login(id, password)) {
+                cards.show(mainPanel, panel.getPageName());
+                return true;
+            }
         }
         return false;
     }
-
 
     /**
      * Method untuk logout dari sistem, kemudian menampilkan halaman Home.
      * */
     public void logout(){
-        for (Loginable panel:
-                loginablePanel) {
+        for (Loginable panel: loginablePanel) {
             panel.logout();
         }
         navigateTo(HomeGUI.KEY);

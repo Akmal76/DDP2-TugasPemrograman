@@ -1,10 +1,19 @@
+/*
+ * Akmal Ramadhan - 2206081534
+ * DDP 2 - TP 04 GUI, Event-driven programming
+ * 2022/2023 Genap
+ * CuciCuci IV: Goodbye, Dek Depe!
+ */
+
 package assignments.assignment4.gui.member;
 
 import assignments.assignment3.user.Member;
+import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.SystemCLI;
 import assignments.assignment4.MainFrame;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,10 +30,12 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         // Set up welcome label
         welcomeLabel = new JLabel("", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Set up footer
         loggedInAsLabel = new JLabel("", SwingConstants.CENTER);
+        loggedInAsLabel.setBorder(new EmptyBorder(30, 0, 30, 0));
         add(loggedInAsLabel, BorderLayout.SOUTH);
 
         // Initialize buttons
@@ -43,19 +54,19 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         JButton[] buttons = createButtons();
         ActionListener[] listeners = createActionListeners();
 
-        if (buttons.length != listeners.length) {
-            throw new IllegalStateException("Number of buttons and listeners must be equal.");
-        }
+//        if (buttons.length != listeners.length) {
+//            throw new IllegalStateException("Number of buttons and listeners must be equal.");
+//        }
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = GridBagConstraints.RELATIVE;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.5;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weighty = 20;
+        gbc.insets = new Insets(10, 30, 10, 30);
 
         for (int i = 0; i < buttons.length; i++) {
             JButton button = buttons[i];
@@ -88,7 +99,17 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
      * @return true jika ID dan password sesuai dengan instance member, false jika tidak.
      * */
     public boolean login(String id, String password) {
-        // TODO
+        // TODOne
+        this.loggedInMember = this.systemCLI.authUser(id, password);
+        // Jika member dengan id dan password yang belum ada sebelumnya
+        if (this.loggedInMember == null) return false;
+
+        // Jike member dengan id dan password yang sudah ada
+        if (this.loggedInMember.login(id, password)) {
+            welcomeLabel.setText("Welcome! " + loggedInMember.getNama());
+            loggedInAsLabel.setText("Logged in as " + loggedInMember.getId());
+            return true;
+        }
         return false;
     }
 

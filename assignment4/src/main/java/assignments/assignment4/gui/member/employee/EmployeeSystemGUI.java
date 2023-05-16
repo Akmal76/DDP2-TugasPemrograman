@@ -1,3 +1,10 @@
+/*
+ * Akmal Ramadhan - 2206081534
+ * DDP 2 - TP 04 GUI, Event-driven programming
+ * 2022/2023 Genap
+ * CuciCuci IV: Goodbye, Dek Depe!
+ */
+
 package assignments.assignment4.gui.member.employee;
 
 import assignments.assignment3.nota.Nota;
@@ -31,7 +38,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     @Override
     protected JButton[] createButtons() {
         // TODO
+        JButton cuciButton = new JButton("It's nyuci time");
+        JButton displayNotaButton = new JButton("Display List Nota");
         return new JButton[]{
+                cuciButton, displayNotaButton
         };
     }
 
@@ -54,7 +64,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
-        // TODO
+        // TODOne
+        String listNota = "";
+        for (Nota nota : NotaManager.notaList) listNota += nota.getNotaStatus() + "\n";
+        JOptionPane.showMessageDialog(this, listNota, "List Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -62,6 +75,11 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void cuci() {
-        // TODO
+        // TODOne
+        JOptionPane.showMessageDialog(this, "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!", "Nyuci Time", JOptionPane.INFORMATION_MESSAGE);
+
+        String detailNota = "";
+        for (Nota nota : NotaManager.notaList) detailNota += nota.kerjakan() + "\n";
+        JOptionPane.showMessageDialog(this, detailNota, "Nyuci Results",  JOptionPane.INFORMATION_MESSAGE);
     }
 }

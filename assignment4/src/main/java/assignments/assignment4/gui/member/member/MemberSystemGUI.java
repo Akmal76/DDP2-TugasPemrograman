@@ -1,3 +1,10 @@
+/*
+ * Akmal Ramadhan - 2206081534
+ * DDP 2 - TP 04 GUI, Event-driven programming
+ * 2022/2023 Genap
+ * CuciCuci IV: Goodbye, Dek Depe!
+ */
+
 package assignments.assignment4.gui.member.member;
 
 import assignments.assignment3.nota.Nota;
@@ -34,8 +41,11 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
+        // TODOne
+        JButton createNotaButton = new JButton("Saya ingin laundry");
+        JButton showDetailNotaButton = new JButton("Lihat detail nota saya");
         return new JButton[]{
+                createNotaButton, showDetailNotaButton
         };
     }
 
@@ -58,7 +68,22 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
-        // TODO
+        // TODOne
+        String detailNota = "";
+        for (Nota nota : loggedInMember.getNotaList()) detailNota += nota + "\n";
+
+        if (detailNota.equals("")) {
+            JOptionPane.showMessageDialog(this, "Anda tidak memiliki nota!", "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        // Memunculkan jendela baru detail nota
+        JTextArea textArea = new JTextArea(detailNota);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        scrollPane.setPreferredSize(new Dimension(500, 300));
+        JOptionPane.showMessageDialog(this, scrollPane, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -66,7 +91,8 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void createNota() {
-        // TODO
+        // TODOne
+        MainFrame.getInstance().navigateTo("CREATE_NOTA");
     }
 
 }
