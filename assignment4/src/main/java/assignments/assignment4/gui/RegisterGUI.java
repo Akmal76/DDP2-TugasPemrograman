@@ -139,7 +139,14 @@ public class RegisterGUI extends JPanel {
         // TODOne
         // Handle ketika ada field yang belum terisi
         if (nameTextField.getText().equals("") || phoneTextField.getText().equals("") || passwordField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Semua field diatas wajib diisi!", "Empty Field", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Semua field diatas wajib diisi!", "Empty Field", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Handle ketika nomor handphone bukan berupa angka
+        if (!phoneTextField.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Nomor handphone harus berisi angka!", "Registration Failed", JOptionPane.ERROR_MESSAGE);
+            phoneTextField.setText("");
             return;
         }
 
@@ -147,12 +154,13 @@ public class RegisterGUI extends JPanel {
         Member member = loginManager.register(nameTextField.getText(), phoneTextField.getText(), passwordField.getText());
         // Jika member sudah ada, maka keluarkan alert box error
         if (member == null) {
-            JOptionPane.showMessageDialog(null, "User dengan nama " + nameTextField.getText() + " dan nomor hp " + phoneTextField.getText() + " sudah ada!", "Registration Failed", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "User dengan nama " + nameTextField.getText() + " dan nomor hp " + phoneTextField.getText() + " sudah ada!", "Registration Failed", JOptionPane.ERROR_MESSAGE);
+            MainFrame.getInstance().navigateTo("HOME");
             return;
         }
         // Jika member belum ada, maka keluarkan alert box berhasil
         loginManager.register(nameTextField.getText(), phoneTextField.getText(), passwordField.getText());
-        JOptionPane.showMessageDialog(null, "Berhasil membuat user dengan ID " + member.getId() + "!", "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Berhasil membuat user dengan ID " + member.getId() + "!", "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
 
         // Kosongkan kolom teks yang digunakan
         nameTextField.setText("");

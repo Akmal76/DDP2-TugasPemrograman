@@ -174,6 +174,12 @@ public class CreateNotaGUI extends JPanel {
         String tempBerat = beratTextField.getText();
         if (!tempBerat.matches("[0-9]+") || tempBerat.equals("0")) {
             JOptionPane.showMessageDialog(this, "Berat Cucian harus berisi angka", "Error", JOptionPane.ERROR_MESSAGE);
+
+            // Kosongkan properti yang digunakan
+            beratTextField.setText("");
+            paketComboBox.setSelectedIndex(0);
+            setrikaCheckBox.setSelected(false);
+            antarCheckBox.setSelected(false);
             return;
         }
         int berat = Integer.parseInt(tempBerat);
@@ -193,8 +199,6 @@ public class CreateNotaGUI extends JPanel {
         this.memberSystemGUI.getLoggedInMember().addNota(nota);
         NotaManager.addNota(nota);
         JOptionPane.showMessageDialog(this, "Nota berhasil dibuat!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-        MainFrame.getInstance().navigateTo("MEMBER");
     }
 
     /**
