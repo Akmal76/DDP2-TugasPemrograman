@@ -133,6 +133,8 @@ public class LoginGUI extends JPanel {
         // Ketika ID atau password tidak ditemukan
         if (!MainFrame.getInstance().login(idTextField.getText(), passwordField.getText())) {
             JOptionPane.showMessageDialog(this, "ID atau password invalid", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            idTextField.setText("");
+            passwordField.setText("");
             return;
         }
 

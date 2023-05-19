@@ -156,17 +156,22 @@ public class RegisterGUI extends JPanel {
         if (member == null) {
             JOptionPane.showMessageDialog(this, "User dengan nama " + nameTextField.getText() + " dan nomor hp " + phoneTextField.getText() + " sudah ada!", "Registration Failed", JOptionPane.ERROR_MESSAGE);
             MainFrame.getInstance().navigateTo("HOME");
+
+            // Kosongkan kolom teks yang digunakan
+            nameTextField.setText("");
+            phoneTextField.setText("");
+            passwordField.setText("");
             return;
         }
         // Jika member belum ada, maka keluarkan alert box berhasil
         loginManager.register(nameTextField.getText(), phoneTextField.getText(), passwordField.getText());
         JOptionPane.showMessageDialog(this, "Berhasil membuat user dengan ID " + member.getId() + "!", "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
 
+        MainFrame.getInstance().navigateTo("HOME");
+
         // Kosongkan kolom teks yang digunakan
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
-
-        MainFrame.getInstance().navigateTo("HOME");
     }
 }

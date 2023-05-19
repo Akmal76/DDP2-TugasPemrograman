@@ -199,6 +199,12 @@ public class CreateNotaGUI extends JPanel {
         this.memberSystemGUI.getLoggedInMember().addNota(nota);
         NotaManager.addNota(nota);
         JOptionPane.showMessageDialog(this, "Nota berhasil dibuat!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        // Kosongkan properti yang digunakan
+        beratTextField.setText("");
+        paketComboBox.setSelectedIndex(0);
+        setrikaCheckBox.setSelected(false);
+        antarCheckBox.setSelected(false);
     }
 
     /**

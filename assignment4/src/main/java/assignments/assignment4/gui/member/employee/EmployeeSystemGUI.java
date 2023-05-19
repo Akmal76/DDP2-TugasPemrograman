@@ -67,6 +67,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
         // TODOne
         String listNota = "";
         for (Nota nota : NotaManager.notaList) listNota += nota.getNotaStatus() + "\n";
+        if (listNota.equals("")) {
+            JOptionPane.showMessageDialog(this, "Belum ada nota", "List Nota",  JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         JOptionPane.showMessageDialog(this, listNota, "List Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -80,6 +84,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
 
         String detailNota = "";
         for (Nota nota : NotaManager.notaList) detailNota += nota.kerjakan() + "\n";
+        if (detailNota.equals("")) {
+            JOptionPane.showMessageDialog(this, "Nothing to cuci here", "Nyuci Results",  JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         JOptionPane.showMessageDialog(this, detailNota, "Nyuci Results",  JOptionPane.INFORMATION_MESSAGE);
     }
 }

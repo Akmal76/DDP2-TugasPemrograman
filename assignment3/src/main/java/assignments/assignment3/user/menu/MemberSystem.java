@@ -70,7 +70,7 @@ public class MemberSystem extends SystemCLI {
 
             String  tawaran = "";
             boolean setrika = true;
-            Boolean kurir   = true;
+            boolean kurir   = true;
 
             // Menawarkan jasa setrika
             System.out.print("Apakah kamu ingin cucianmu disetrika oleh staff professional kami?\nHanya tambah 1000 / kg :0\n[Ketik x untuk tidak mau]: ");
